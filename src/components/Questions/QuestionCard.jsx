@@ -10,8 +10,9 @@ export default function QuestionCard({ question, onChange }) {
           {question.answers.map((answer) => (
             <Option
               key={answer.answer}
-              text={answer.answer}
+              textAnswer={answer}
               onChangeQuestion={onChange}
+              question={question}
             />
           ))}
         </ul>

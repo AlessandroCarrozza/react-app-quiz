@@ -1,7 +1,9 @@
-export default function Option({ text, onChangeQuestion }) {
+export default function Option({ textAnswer, onChangeQuestion, question }) {
   return (
     <li className="answer">
-      <button onClick={() => onChangeQuestion()}>{text}</button>
+      <button onClick={() => onChangeQuestion(question.text, textAnswer)}>
+        {textAnswer.answer}
+      </button>
     </li>
   );
 }

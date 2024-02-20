@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { QUESTIONS_QUIZ } from "./questions";
 import QuestionCard from "../src/components/Questions/QuestionCard";
+import imgResults from "./assets/quiz-complete.png";
 
 function App() {
   const [recordResults, setRecordResults] = useState([]);
@@ -15,7 +16,7 @@ function App() {
       setCurrentQuestion(QUESTIONS_QUIZ[num]);
       setRecordResults((prevResults) => [
         ...prevResults,
-        { question: question, answer: answer },
+        { question: question, userAnswer: answer },
       ]);
     } else {
       setIsActiveQuiz(false);
@@ -24,10 +25,45 @@ function App() {
     console.log(recordResults.length);
   }
 
-  return !isActiveQuiz ? (
+  return isActiveQuiz ? (
     <QuestionCard question={currentQuestion} onChange={handleQuestionChange} />
   ) : (
-    <p>results</p>
+    <div id="summary">
+      <img src={imgResults} alt="Trophy" />
+      <h2>quiz completed!</h2>
+      <ol id="summary-stats">
+        <li>
+          <div className="number">70%</div>
+          <div className="text">skipped</div>
+        </li>
+        <li>
+          <div className="number">70%</div>
+          <div className="text">answered correctly</div>
+        </li>
+        <li>
+          <div className="number">70%</div>
+          <div className="text">answered incorrectly</div>
+        </li>
+      </ol>
+
+      <ol>
+        <li>
+          <h3>1</h3>
+          <p className="question">QuestionQuestionQuestion</p>
+          <p className="user-answer skipped">Answer</p>
+        </li>
+        <li>
+          <h3>1</h3>
+          <p className="question">QuestionQuestionQuestion</p>
+          <p className="user-answer correct">Answer</p>
+        </li>
+        <li>
+          <h3>1</h3>
+          <p className="question">QuestionQuestionQuestion</p>
+          <p className="user-answer wrong">Answer</p>
+        </li>
+      </ol>
+    </div>
   );
 }
 

@@ -14,7 +14,7 @@ export default function QuizContextProvider({
   const [recordResults, setRecordResults] = useState([]);
 
   let currentQuestion = QUESTIONS_QUIZ[recordResults.length];
-  console.log(currentQuestion);
+  // console.log(currentQuestion);
 
   function handleQuestionChange(answer) {
     setRecordResults((prevResults) => {

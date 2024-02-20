@@ -1,21 +1,36 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { QuizContext } from "../../store/quiz-context";
 
 export default function ProgressTimer() {
+  let TIMER = 3000;
+
   const { handleQuestionChangeCtx, currentQuestionCtx } =
     useContext(QuizContext);
-  const [remainingTime, setRemainingTime] = useState(3000);
+  const [remainingTime, setRemainingTime] = useState(TIMER);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setRemainingTime((prevTime) => prevTime - 10);
+  //   }, 10);
+
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
 
   useEffect(() => {
-    console.log("time started");
     const timer = setTimeout(() => {
       handleQuestionChangeCtx(currentQuestionCtx.userAnswer);
-    }, 3000);
+    }, TIMER);
+    const interval = setInterval(() => {
+      setRemainingTime((prevTime) => prevTime - 10);
+    }, 10);
     return () => {
-      console.log("clear");
       clearTimeout(timer);
+      clearInterval(interval);
+      setRemainingTime(TIMER);
     };
-  }, []);
+  }, [currentQuestionCtx]);
 
-  return <progress max={3000} value={remainingTime} />;
+  return <progress max={TIMER} value={remainingTime} />;
 }

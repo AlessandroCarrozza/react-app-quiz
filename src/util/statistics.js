@@ -1,9 +1,9 @@
 export function getAmounts(array) {
   const statistics = array.reduce(
     (acc, obj) => {
-      if (obj.userAnswer.result === true) {
+      if (obj.userAnswer?.result === true) {
         acc.true += 1;
-      } else if (obj.userAnswer.result === false) {
+      } else if (obj.userAnswer?.result === false) {
         acc.false += 1;
       } else if (obj.userAnswer === undefined) {
         acc.skipped += 1;
@@ -12,6 +12,7 @@ export function getAmounts(array) {
     },
     { true: 0, false: 0, skipped: 0 }
   );
+
   return statistics;
 }
 

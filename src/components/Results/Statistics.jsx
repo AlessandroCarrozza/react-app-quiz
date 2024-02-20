@@ -10,7 +10,7 @@ export default function Statistics() {
   return (
     <ol id="summary-stats">
       <li>
-        <div className="number">99%</div>
+        <div className="number">{getStat(statistics.skipped, total)}%</div>
         <div className="text">skipped</div>
       </li>
       <li>

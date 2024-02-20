@@ -6,7 +6,7 @@ export default function Log() {
   return (
     <ol>
       {recordResultsCtx.map((result) => {
-        let styleClass;
+        let styleClass = "skipped";
         if (result.userAnswer.result === true) {
           styleClass = "correct";
         } else if (result.userAnswer.result === false) {

@@ -2,9 +2,9 @@ import { createContext, useState } from "react";
 import { QUESTIONS_QUIZ } from "../questions";
 
 export const QuizContext = createContext({
-  recordResults: [],
-  currentQuestion: null,
-  questionChange: () => {},
+  recordResultsCtx: [],
+  currentQuestionCtx: null,
+  handleQuestionChangeCtx: () => {},
 });
 
 export default function QuizContextProvider({
@@ -14,13 +14,14 @@ export default function QuizContextProvider({
   const [recordResults, setRecordResults] = useState([]);
 
   let currentQuestion = QUESTIONS_QUIZ[recordResults.length];
+  console.log(currentQuestion);
 
-  function handleQuestionChange(question, answer) {
+  function handleQuestionChange(answer) {
     setRecordResults((prevResults) => {
       let newId = prevResults.length;
       let newResults = [
         ...prevResults,
-        { question: question, userAnswer: answer, id: newId },
+        { question: currentQuestion.text, userAnswer: answer, id: newId },
       ];
       return newResults;
     });

@@ -6,11 +6,7 @@ export default function Option({ textAnswer }) {
     useContext(QuizContext);
   return (
     <li className="answer">
-      <button
-        onClick={() =>
-          handleQuestionChangeCtx(currentQuestionCtx.text, textAnswer)
-        }
-      >
+      <button onClick={() => handleQuestionChangeCtx(textAnswer)}>
         {textAnswer.answer}
       </button>
     </li>

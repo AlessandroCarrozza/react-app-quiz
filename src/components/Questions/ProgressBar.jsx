@@ -13,5 +13,6 @@ export default function ProgressTimer() {
   //     setRemainingTime(3000);
   //   };
   // }, []);
+
   return <progress max={3000} value={remainingTime} />;
 }

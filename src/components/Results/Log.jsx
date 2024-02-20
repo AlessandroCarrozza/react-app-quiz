@@ -1,4 +1,6 @@
 export default function Log({ theResults }) {
+  console.log(theResults);
+
   return (
     <ol>
       {theResults.map((result) => {

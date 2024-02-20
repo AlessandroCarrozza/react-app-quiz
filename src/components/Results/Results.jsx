@@ -7,7 +7,7 @@ export default function Results({ results }) {
     <div id="summary">
       <img src={imgResults} alt="Trophy" />
       <h2>quiz completed!</h2>
-      <Statistics />
+      <Statistics theResults={results} />
       <Log theResults={results} />
     </div>
   );

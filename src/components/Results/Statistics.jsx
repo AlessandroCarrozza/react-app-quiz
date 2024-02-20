@@ -1,8 +1,11 @@
 import { getAmounts, getStat } from "../../util/statistics";
+import { useContext } from "react";
+import { QuizContext } from "../../store/quiz-context";
 
-export default function Statistics({ theResults }) {
-  const total = theResults.length;
-  const statistics = getAmounts(theResults);
+export default function Statistics() {
+  const { recordResultsCtx } = useContext(QuizContext);
+  const total = recordResultsCtx.length;
+  const statistics = getAmounts(recordResultsCtx);
 
   return (
     <ol id="summary-stats">

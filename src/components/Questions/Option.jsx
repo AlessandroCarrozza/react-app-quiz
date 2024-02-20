@@ -1,7 +1,16 @@
-export default function Option({ textAnswer, onChangeQuestion, question }) {
+import { useContext } from "react";
+import { QuizContext } from "../../store/quiz-context";
+
+export default function Option({ textAnswer }) {
+  const { handleQuestionChangeCtx, currentQuestionCtx } =
+    useContext(QuizContext);
   return (
     <li className="answer">
-      <button onClick={() => onChangeQuestion(question.text, textAnswer)}>
+      <button
+        onClick={() =>
+          handleQuestionChangeCtx(currentQuestionCtx.text, textAnswer)
+        }
+      >
         {textAnswer.answer}
       </button>
     </li>

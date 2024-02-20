@@ -1,9 +1,11 @@
-export default function Log({ theResults }) {
-  console.log(theResults);
+import { useContext } from "react";
+import { QuizContext } from "../../store/quiz-context";
 
+export default function Log() {
+  const { recordResultsCtx } = useContext(QuizContext);
   return (
     <ol>
-      {theResults.map((result) => {
+      {recordResultsCtx.map((result) => {
         let styleClass;
         if (result.userAnswer.result === true) {
           styleClass = "correct";

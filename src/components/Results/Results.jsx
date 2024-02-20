@@ -2,13 +2,13 @@ import imgResults from "../../assets/quiz-complete.png";
 import Statistics from "./Statistics";
 import Log from "./Log";
 
-export default function Results({ results }) {
+export default function Results() {
   return (
     <div id="summary">
       <img src={imgResults} alt="Trophy" />
       <h2>quiz completed!</h2>
-      <Statistics theResults={results} />
-      <Log theResults={results} />
+      <Statistics />
+      <Log />
     </div>
   );
 }

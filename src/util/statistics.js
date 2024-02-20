@@ -20,3 +20,15 @@ export function getStat(amount, total) {
   const stat = (amount * 100) / total;
   return Math.floor(stat);
 }
+
+export function getShuffleAnswers(array, currentQuestion) {
+  do {
+    function getRandomIndex() {
+      return Math.floor(Math.random() * 4);
+    }
+    const index = getRandomIndex();
+    if (!array.includes(currentQuestion.answers[index])) {
+      array.push(currentQuestion.answers[index]);
+    }
+  } while (array.length !== currentQuestion.answers.length);
+}

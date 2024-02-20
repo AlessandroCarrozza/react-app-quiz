@@ -6,17 +6,8 @@ export default function ProgressTimer() {
 
   const { handleQuestionChangeCtx, currentQuestionCtx } =
     useContext(QuizContext);
+
   const [remainingTime, setRemainingTime] = useState(TIMER);
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setRemainingTime((prevTime) => prevTime - 10);
-  //   }, 10);
-
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {

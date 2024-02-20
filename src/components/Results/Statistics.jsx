@@ -7,6 +7,12 @@ export default function Statistics() {
   const total = recordResultsCtx.length;
   const statistics = getAmounts(recordResultsCtx);
 
+  const perCentRemained =
+    100 -
+    getStat(statistics.skipped, total) -
+    getStat(statistics.true, total) -
+    getStat(statistics.false, total);
+  console.log(perCentRemained);
   return (
     <ol id="summary-stats">
       <li>

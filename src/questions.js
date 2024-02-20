@@ -6,7 +6,7 @@ export const QUESTIONS_QUIZ = [
       {
         answer:
           "A library to build user interfaces with help of declarative code.",
-        result: false,
+        result: true,
       },
       {
         answer: "A library for managing state in web applications.",
@@ -30,7 +30,7 @@ export const QUESTIONS_QUIZ = [
       {
         answer:
           "Enabling the use of state and other React features in functional components.",
-        result: false,
+        result: true,
       },
       {
         answer: "Creating responsive layouts in React applications.",
@@ -53,7 +53,7 @@ export const QUESTIONS_QUIZ = [
       {
         answer:
           "A JavaScript extension that adds HTML-like syntax to JavaScript.",
-        result: false,
+        result: true,
       },
       {
         answer: "A JavaScript library for building dynamic user interfaces.",
@@ -77,7 +77,7 @@ export const QUESTIONS_QUIZ = [
       {
         answer:
           "By defining a JavaScript function that returns a renderable value.",
-        result: false,
+        result: true,
       },
       {
         answer: "By defining a custom HTML tag in JavaScript.",
@@ -100,7 +100,7 @@ export const QUESTIONS_QUIZ = [
       {
         answer:
           "An object in a component that holds values and may cause the component to render on change.",
-        result: false,
+        result: true,
       },
       {
         answer: "The lifecycle phase a React component is in.",
@@ -124,7 +124,7 @@ export const QUESTIONS_QUIZ = [
       {
         answer:
           "By using the map() method to iterate over an array of data and returning JSX.",
-        result: false,
+        result: true,
       },
       {
         answer:
@@ -149,7 +149,7 @@ export const QUESTIONS_QUIZ = [
     answers: [
       {
         answer: "Using the #if template syntax.",
-        result: false,
+        result: true,
       },
       {
         answer: "Using a ternary operator.",

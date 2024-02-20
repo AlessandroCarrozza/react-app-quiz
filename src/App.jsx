@@ -6,25 +6,24 @@ import Results from "./components/Results/Results";
 function App() {
   const [recordResults, setRecordResults] = useState([]);
   const [isActiveQuiz, setIsActiveQuiz] = useState(true);
-  let num = recordResults.length;
 
-  const [currentQuestion, setCurrentQuestion] = useState(QUESTIONS_QUIZ[num]);
+  let currentQuestion = QUESTIONS_QUIZ[recordResults.length];
 
   function handleQuestionChange(question, answer) {
-    if (num < QUESTIONS_QUIZ.length - 1) {
-      setCurrentQuestion(QUESTIONS_QUIZ[num + 1]);
-      setRecordResults((prevResults) => {
-        let newNum = prevResults.length;
-        let newResults = [
-          ...prevResults,
-          { question: question, userAnswer: answer, id: newNum },
-        ];
-        return newResults;
-      });
-    } else {
+    setRecordResults((prevResults) => {
+      let newId = prevResults.length;
+      let newResults = [
+        ...prevResults,
+        { question: question, userAnswer: answer, id: newId },
+      ];
+      return newResults;
+    });
+    if (recordResults.length >= QUESTIONS_QUIZ.length - 1) {
       setIsActiveQuiz(false);
     }
   }
+
+  console.log(recordResults);
 
   return isActiveQuiz ? (
     <QuestionCard question={currentQuestion} onChange={handleQuestionChange} />

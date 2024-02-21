@@ -5,26 +5,35 @@ import { QuizContext } from "../../store/quiz-context";
 export default function Statistics() {
   const { recordResultsCtx } = useContext(QuizContext);
   const total = recordResultsCtx.length;
-  const statistics = getAmounts(recordResultsCtx);
 
-  const perCentRemained =
-    100 -
-    getStat(statistics.skipped, total) -
-    getStat(statistics.true, total) -
-    getStat(statistics.false, total);
-  console.log(perCentRemained);
+  let perCentSkip = getStat(getAmounts(recordResultsCtx).skipped, total);
+  let perCentCorrect = getStat(getAmounts(recordResultsCtx).true, total);
+  let perCentWrong = getStat(getAmounts(recordResultsCtx).false, total);
+
+  const perCentRemained = 100 - perCentSkip - perCentCorrect - perCentWrong;
+
+  // add perCentRemained to the bigger PerCent value
+  const maxPerCent = Math.max(perCentSkip, perCentCorrect, perCentWrong);
+  if (maxPerCent === perCentSkip) {
+    perCentSkip += perCentRemained;
+  } else if (maxPerCent === perCentCorrect) {
+    perCentCorrect += perCentRemained;
+  } else {
+    perCentWrong += perCentRemained;
+  }
+
   return (
     <ol id="summary-stats">
       <li>
-        <div className="number">{getStat(statistics.skipped, total)}%</div>
+        <div className="number">{perCentSkip}%</div>
         <div className="text">skipped</div>
       </li>
       <li>
-        <div className="number">{getStat(statistics.true, total)}%</div>
+        <div className="number">{perCentCorrect}%</div>
         <div className="text">answered correctly</div>
       </li>
       <li>
-        <div className="number">{getStat(statistics.false, total)}%</div>
+        <div className="number">{perCentWrong}%</div>
         <div className="text">answered incorrectly</div>
       </li>
     </ol>

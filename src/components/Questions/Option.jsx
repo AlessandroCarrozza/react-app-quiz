@@ -3,11 +3,20 @@ import { QuizContext } from "../../store/quiz-context";
 
 export default function Option({ textAnswer }) {
   // useCONTEXT
-  const { handleQuestionChangeCtx } = useContext(QuizContext);
+  const { handleQuestionChangeCtx, isActiveOptionCtx } =
+    useContext(QuizContext);
+
+  let styleClass = "";
+  if (!isActiveOptionCtx) {
+    styleClass = textAnswer.result ? "correct" : "wrong";
+  }
 
   return (
     <li className="answer">
-      <button onClick={() => handleQuestionChangeCtx(textAnswer)}>
+      <button
+        className={isActiveOptionCtx ? "" : styleClass}
+        onClick={() => handleQuestionChangeCtx(textAnswer)}
+      >
         {textAnswer.answer}
       </button>
     </li>

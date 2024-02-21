@@ -6,7 +6,6 @@ import { getShuffleAnswers } from "../../util/statistics";
 
 export default function QuestionCard() {
   const { currentQuestionCtx } = useContext(QuizContext);
-  console.log(currentQuestionCtx);
 
   // random answers position
   const shuffleAnswers = [];

@@ -6,14 +6,14 @@ export default function Log() {
   return (
     <ol>
       {recordResultsCtx.map((result) => {
+        // assign a style for each result
         let styleClass = "skipped";
-        if (result.userAnswer !== undefined) {
-          if (result.userAnswer.result === true) {
-            styleClass = "correct";
-          } else if (result.userAnswer.result === false) {
-            styleClass = "wrong";
-          }
-        }
+        styleClass =
+          result.userAnswer !== undefined
+            ? result.userAnswer.result // result.userAnswer.result is true
+              ? "correct"
+              : "wrong"
+            : styleClass;
         return (
           <li key={result.id}>
             <h3>{result.id + 1}</h3>

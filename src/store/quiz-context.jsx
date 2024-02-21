@@ -1,12 +1,14 @@
 import { createContext } from "react";
 import { QUESTIONS_QUIZ } from "../questions";
 
+// context creation
 export const QuizContext = createContext({
   recordResultsCtx: [],
   currentQuestionCtx: null,
   handleQuestionChangeCtx: () => {},
 });
 
+// function component context
 export default function QuizContextProvider({
   children,
   recordResults,
@@ -14,6 +16,7 @@ export default function QuizContextProvider({
 }) {
   let currentQuestion = QUESTIONS_QUIZ[recordResults.length];
 
+  // function for the question change
   function handleQuestionChange(answer) {
     setRecordResults((prevResults) => {
       let newId = prevResults.length;

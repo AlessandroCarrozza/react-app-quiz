@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { QUESTIONS_QUIZ } from "../questions";
 
 export const QuizContext = createContext({
@@ -9,12 +9,10 @@ export const QuizContext = createContext({
 
 export default function QuizContextProvider({
   children,
-  isActiveQuizFunction,
+  recordResults,
+  setRecordResults,
 }) {
-  const [recordResults, setRecordResults] = useState([]);
-
   let currentQuestion = QUESTIONS_QUIZ[recordResults.length];
-  // console.log(currentQuestion);
 
   function handleQuestionChange(answer) {
     setRecordResults((prevResults) => {
@@ -25,9 +23,6 @@ export default function QuizContextProvider({
       ];
       return newResults;
     });
-    if (recordResults.length >= QUESTIONS_QUIZ.length - 1) {
-      isActiveQuizFunction(false);
-    }
   }
 
   console.log(recordResults);

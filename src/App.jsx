@@ -2,11 +2,16 @@ import { useState } from "react";
 import QuestionCard from "../src/components/Questions/QuestionCard";
 import Results from "./components/Results/Results";
 import QuizContextProvider from "./store/quiz-context";
+import { QUESTIONS_QUIZ } from "./questions";
 
 function App() {
-  const [isActiveQuiz, setIsActiveQuiz] = useState(true);
+  const [recordResults, setRecordResults] = useState([]);
+  const isActiveQuiz = recordResults.length !== QUESTIONS_QUIZ.length;
   return (
-    <QuizContextProvider isActiveQuizFunction={setIsActiveQuiz}>
+    <QuizContextProvider
+      recordResults={recordResults}
+      setRecordResults={setRecordResults}
+    >
       {isActiveQuiz ? <QuestionCard /> : <Results />}
     </QuizContextProvider>
   );

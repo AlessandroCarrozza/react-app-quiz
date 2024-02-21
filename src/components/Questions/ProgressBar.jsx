@@ -23,5 +23,15 @@ export default function ProgressTimer() {
   //   };
   // }, [currentQuestionCtx]);
 
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setRemainingTime((prevTime) => prevTime - 10);
+  //   }, 10);
+  //   return () => {
+  //     clearInterval(interval);
+  //     setRemainingTime(TIMER);
+  //   };
+  // }, [currentQuestionCtx]);
+
   return <progress max={TIMER} value={remainingTime} />;
 }

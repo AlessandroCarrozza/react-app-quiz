@@ -1,23 +1,29 @@
 import { useContext } from "react";
 import { QuizContext } from "../../store/quiz-context";
 
-export default function Option({ textAnswer }) {
+export default function Option({ answer }) {
   // useCONTEXT
-  const { handleQuestionChangeCtx, isActiveOptionCtx } =
+  const { handleQuestionChangeCtx, isActiveOptionCtx, recordResultsCtx } =
     useContext(QuizContext);
 
   let styleClass = "";
-  if (!isActiveOptionCtx) {
-    styleClass = textAnswer.result ? "correct" : "wrong";
+  if (
+    !isActiveOptionCtx &&
+    recordResultsCtx[recordResultsCtx.length - 1].userAnswer.answer ===
+      answer.answer
+  ) {
+    styleClass = answer.result ? "correct" : "wrong";
+  } else {
+    styleClass = "noSelected";
   }
 
   return (
     <li className="answer">
       <button
         className={isActiveOptionCtx ? "" : styleClass}
-        onClick={() => handleQuestionChangeCtx(textAnswer)}
+        onClick={() => handleQuestionChangeCtx(answer)}
       >
-        {textAnswer.answer}
+        {answer.answer}
       </button>
     </li>
   );

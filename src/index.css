@@ -190,6 +190,10 @@ header h1 {
   color: #2c203d;
 }
 
+.answer button.noSelected {
+  color: lightblue;
+}
+
 #skip-action {
   margin-top: 2rem;
 }

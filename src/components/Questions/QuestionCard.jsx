@@ -2,15 +2,11 @@ import Option from "./Option";
 import ProgressBar from "./ProgressBar";
 import { useContext } from "react";
 import { QuizContext } from "../../store/quiz-context";
-import { getShuffleAnswers } from "../../util/statistics";
 
 export default function QuestionCard() {
-  const { currentQuestionCtx } = useContext(QuizContext);
+  const { shuffleAnswersCtx, currentQuestionCtx } = useContext(QuizContext);
 
-  // random answers position
-  const shuffleAnswers = [];
-  getShuffleAnswers(shuffleAnswers, currentQuestionCtx);
-  // console.log(shuffleAnswers);
+  // console.log(currentQuestionCtx);
 
   return (
     <div id="quiz">
@@ -18,8 +14,8 @@ export default function QuestionCard() {
         <ProgressBar />
         <h2>{currentQuestionCtx.text}</h2>
         <ul id="answers">
-          {shuffleAnswers.map((answer) => (
-            <Option key={answer.answer} textAnswer={answer} />
+          {shuffleAnswersCtx.map((answer) => (
+            <Option key={answer.answer} answer={answer} />
           ))}
         </ul>
       </div>

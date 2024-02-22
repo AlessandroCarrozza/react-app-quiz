@@ -23,10 +23,13 @@ export default function QuizContextProvider({
     QUESTIONS_QUIZ[recordResults.length]
   );
 
+  const [isActiveTimer, setIsActiveTimer] = useState(true);
+
   // function for the question change
   function handleQuestionChange(answer) {
     if (isActiveOption) {
       setIsActiveOption(false);
+      setIsActiveTimer(true);
       setRecordResults((prevResults) => {
         let newResults = [
           ...prevResults,
@@ -37,7 +40,8 @@ export default function QuizContextProvider({
           },
         ];
         setTimeout(() => {
-          console.log("timeout post click finished");
+          console.log("next question");
+          setIsActiveTimer(false); // qui devo stoppare il timeout dentro lo useEffect
           setCurrentQuestion(QUESTIONS_QUIZ[newResults.length]);
           setIsActiveOption(true);
         }, 1000);
@@ -55,6 +59,8 @@ export default function QuizContextProvider({
     handleQuestionChangeCtx: handleQuestionChange,
     isActiveOptionCtx: isActiveOption,
     setIsActiveOptionCtx: setIsActiveOption,
+    isActiveTimerCtx: isActiveTimer,
+    setIsActiveTimerCtx: setIsActiveTimer,
   };
   return (
     <QuizContext.Provider value={ctxValue}>{children}</QuizContext.Provider>

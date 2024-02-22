@@ -3,33 +3,34 @@ import { QuizContext } from "../../store/quiz-context";
 
 export default function ProgressTimer() {
   const TIMER = 3000;
-  // useCONTEXT
-  const {
-    handleQuestionChangeCtx,
-    currentQuestionCtx,
-    isActiveOptionCtx,
-    recordResultsCtx,
-  } = useContext(QuizContext);
+  const { handleQuestionChangeCtx, currentQuestionCtx, isActiveOptionCtx } =
+    useContext(QuizContext);
 
   const [remainingTime, setRemainingTime] = useState(TIMER);
+  const timerId = useRef(); // useRef per tenere traccia del timeout
 
   useEffect(() => {
-    console.log("TIME START");
-    let timer = "";
     if (isActiveOptionCtx) {
-      timer = setTimeout(() => {
-        handleQuestionChangeCtx(currentQuestionCtx.userAnswer);
-      }, TIMER);
-    }
-    const interval = setInterval(() => {
-      setRemainingTime((prevTime) => prevTime - 10);
-    }, 10);
-    return () => {
-      clearTimeout(timer);
-      clearInterval(interval);
+      // Resetta il timer ogni volta che la domanda cambia o quando il componente viene montato
       setRemainingTime(TIMER);
-    };
-  }, [currentQuestionCtx]);
+
+      // Imposta il timeout
+      timerId.current = setTimeout(() => {
+        handleQuestionChangeCtx(currentQuestionCtx.userAnswer); // Cambia la domanda al termine del timer
+      }, TIMER);
+
+      // Imposta un intervallo per aggiornare il progresso
+      const intervalId = setInterval(() => {
+        setRemainingTime((prevTime) => Math.max(prevTime - 10, 0));
+      }, 10);
+
+      // Pulizia al smontaggio o al cambio della domanda
+      return () => {
+        clearTimeout(timerId.current);
+        clearInterval(intervalId);
+      };
+    }
+  }, [currentQuestionCtx, isActiveOptionCtx, handleQuestionChangeCtx]);
 
   return <progress max={TIMER} value={remainingTime} />;
 }

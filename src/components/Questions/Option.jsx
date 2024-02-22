@@ -27,7 +27,9 @@ export default function Option({ answer }) {
     <li className="answer">
       <button
         className={isActiveOptionCtx ? "" : styleClass}
-        onClick={() => handleQuestionChangeCtx(answer)}
+        onClick={() => {
+          handleQuestionChangeCtx(answer);
+        }}
       >
         {answer.answer}
       </button>

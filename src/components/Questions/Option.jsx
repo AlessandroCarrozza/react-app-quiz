@@ -8,9 +8,9 @@ export default function Option({ answer }) {
 
   let styleClass = "";
   if (
-    !isActiveOptionCtx &&
-    recordResultsCtx[recordResultsCtx.length - 1].userAnswer.answer ===
-      answer.answer
+    recordResultsCtx.length > 0 &&
+    recordResultsCtx[recordResultsCtx.length - 1].userAnswer &&
+    recordResultsCtx[recordResultsCtx.length - 1].userAnswer.answer === answer
   ) {
     styleClass = answer.result ? "correct" : "wrong";
   } else {

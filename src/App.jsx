@@ -7,16 +7,17 @@ import { QUESTIONS_QUIZ } from "./questions";
 function App() {
   const [recordResults, setRecordResults] = useState([]);
   const [isActiveOption, setIsActiveOption] = useState(true);
-  const isActiveQuiz = recordResults.length !== QUESTIONS_QUIZ.length;
+  const isQuizEnded =
+    recordResults.length === QUESTIONS_QUIZ.length && isActiveOption;
   return (
     <QuizContextProvider
       recordResults={recordResults}
       setRecordResults={setRecordResults}
       isActiveOption={isActiveOption}
       setIsActiveOption={setIsActiveOption}
-      isActiveQuiz={isActiveQuiz}
+      isQuizEnded={isQuizEnded}
     >
-      {isActiveQuiz ? <QuestionCard /> : <Results />}
+      {isQuizEnded ? <Results /> : <QuestionCard />}
     </QuizContextProvider>
   );
 }

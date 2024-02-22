@@ -31,4 +31,5 @@ export function getShuffleAnswers(array, currentQuestion) {
       array.push(currentQuestion.answers[index]);
     }
   } while (array.length !== currentQuestion.answers.length);
+  return array;
 }

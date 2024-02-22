@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect } from "react";
 import { QUESTIONS_QUIZ } from "../questions";
-import { getShuffleAnswers } from "../util/statistics";
 
 // context creation
 export const QuizContext = createContext({
@@ -19,27 +18,10 @@ export default function QuizContextProvider({
   setRecordResults,
   isActiveOption,
   setIsActiveOption,
-  isActiveQuiz,
 }) {
   const [currentQuestion, setCurrentQuestion] = useState(
     QUESTIONS_QUIZ[recordResults.length]
   );
-
-  console.log(currentQuestion);
-  useEffect(() => {
-    if (currentQuestion) {
-      setCurrentQuestion((prev) => {
-        const shuffleAnswers = [];
-        getShuffleAnswers(shuffleAnswers, prev);
-        return { ...prev, shuffleAnswers };
-      });
-    }
-  }, []);
-
-  // random answers position
-  // const shuffleAnswers = [];
-  // getShuffleAnswers(shuffleAnswers, currentQuestion);
-  // console.log(shuffleAnswers);
 
   // function for the question change
   function handleQuestionChange(answer) {
@@ -55,6 +37,7 @@ export default function QuizContextProvider({
           },
         ];
         setTimeout(() => {
+          console.log("timeout post click finished");
           setCurrentQuestion(QUESTIONS_QUIZ[newResults.length]);
           setIsActiveOption(true);
         }, 3000);
@@ -63,8 +46,6 @@ export default function QuizContextProvider({
     }
   }
 
-  console.log(recordResults);
-
   const ctxValue = {
     recordResultsCtx: recordResults,
     currentQuestionCtx: currentQuestion,
@@ -72,7 +53,6 @@ export default function QuizContextProvider({
     handleQuestionChangeCtx: handleQuestionChange,
     isActiveOptionCtx: isActiveOption,
     setIsActiveOptionCtx: setIsActiveOption,
-    shuffleAnswersCtx: currentQuestion.answers,
   };
   return (
     <QuizContext.Provider value={ctxValue}>{children}</QuizContext.Provider>

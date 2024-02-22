@@ -15,7 +15,6 @@ function App() {
       setRecordResults={setRecordResults}
       isActiveOption={isActiveOption}
       setIsActiveOption={setIsActiveOption}
-      isQuizEnded={isQuizEnded}
     >
       {isQuizEnded ? <Results /> : <QuestionCard />}
     </QuizContextProvider>

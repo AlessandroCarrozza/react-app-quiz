@@ -4,16 +4,19 @@ import { QuizContext } from "../../store/quiz-context";
 export default function ProgressTimer() {
   const TIMER = 5000;
   // useCONTEXT
-  const { handleQuestionChangeCtx, currentQuestionCtx } =
+  const { handleQuestionChangeCtx, currentQuestionCtx, isActiveOptionCtx } =
     useContext(QuizContext);
 
   const [remainingTime, setRemainingTime] = useState(TIMER);
 
   useEffect(() => {
     console.log("TIME START");
-    const timer = setTimeout(() => {
-      handleQuestionChangeCtx(currentQuestionCtx.userAnswer);
-    }, TIMER);
+    let timer = "";
+    if (isActiveOptionCtx) {
+      timer = setTimeout(() => {
+        handleQuestionChangeCtx(currentQuestionCtx.userAnswer);
+      }, TIMER);
+    }
     const interval = setInterval(() => {
       setRemainingTime((prevTime) => prevTime - 10);
     }, 10);

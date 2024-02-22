@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 import { QUESTIONS_QUIZ } from "../questions";
 
 // context creation
@@ -7,7 +7,7 @@ export const QuizContext = createContext({
   currentQuestionCtx: null,
   setCurrentQuestion: () => {},
   handleQuestionChangeCtx: () => {},
-  // isActiveOptionCtx: isActiveOption,
+  isActiveOptionCtx: null,
   setIsActiveOptionCtx: () => {},
 });
 
@@ -40,11 +40,13 @@ export default function QuizContextProvider({
           console.log("timeout post click finished");
           setCurrentQuestion(QUESTIONS_QUIZ[newResults.length]);
           setIsActiveOption(true);
-        }, 3000);
+        }, 2000);
         return newResults;
       });
     }
   }
+
+  console.log(recordResults);
 
   const ctxValue = {
     recordResultsCtx: recordResults,

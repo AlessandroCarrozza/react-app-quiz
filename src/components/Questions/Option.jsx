@@ -6,12 +6,18 @@ export default function Option({ answer }) {
   const { handleQuestionChangeCtx, isActiveOptionCtx, recordResultsCtx } =
     useContext(QuizContext);
 
-  let styleClass = "";
-  if (
+  // console.log(recordResultsCtx);
+  // console.log(recordResultsCtx[recordResultsCtx.length - 1]);
+
+  const isClicked =
     recordResultsCtx.length > 0 &&
     recordResultsCtx[recordResultsCtx.length - 1].userAnswer &&
-    recordResultsCtx[recordResultsCtx.length - 1].userAnswer.answer === answer
-  ) {
+    recordResultsCtx[recordResultsCtx.length - 1].userAnswer.answer ===
+      answer.answer;
+
+  // styling buttons post click
+  let styleClass = "";
+  if (isClicked) {
     styleClass = answer.result ? "correct" : "wrong";
   } else {
     styleClass = "noSelected";

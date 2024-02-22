@@ -2,10 +2,14 @@ import { useState, useEffect, useContext, useRef } from "react";
 import { QuizContext } from "../../store/quiz-context";
 
 export default function ProgressTimer() {
-  const TIMER = 5000;
+  const TIMER = 3000;
   // useCONTEXT
-  const { handleQuestionChangeCtx, currentQuestionCtx, isActiveOptionCtx } =
-    useContext(QuizContext);
+  const {
+    handleQuestionChangeCtx,
+    currentQuestionCtx,
+    isActiveOptionCtx,
+    recordResultsCtx,
+  } = useContext(QuizContext);
 
   const [remainingTime, setRemainingTime] = useState(TIMER);
 

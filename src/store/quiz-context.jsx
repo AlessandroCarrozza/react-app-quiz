@@ -40,7 +40,7 @@ export default function QuizContextProvider({
           console.log("timeout post click finished");
           setCurrentQuestion(QUESTIONS_QUIZ[newResults.length]);
           setIsActiveOption(true);
-        }, 2000);
+        }, 1000);
         return newResults;
       });
     }

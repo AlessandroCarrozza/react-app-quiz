@@ -1,10 +1,11 @@
 import Option from "./Option";
 import ProgressBar from "./ProgressBar";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { QuizContext } from "../../store/quiz-context";
 
 export default function QuestionCard() {
   const { currentQuestionCtx } = useContext(QuizContext);
+  console.log("render qcard");
 
   return (
     <div id="quiz">

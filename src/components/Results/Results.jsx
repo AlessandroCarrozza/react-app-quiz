@@ -3,6 +3,7 @@ import Statistics from "./Statistics";
 import Log from "./Log";
 
 export default function Results() {
+  console.log("log results");
   return (
     <div id="summary">
       <img src={imgResults} alt="Trophy" />

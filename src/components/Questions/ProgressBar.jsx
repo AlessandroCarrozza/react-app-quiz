@@ -6,6 +6,8 @@ export default function ProgressTimer() {
   const { handleQuestionChangeCtx, currentQuestionCtx, isActiveOptionCtx } =
     useContext(QuizContext);
 
+  // console.log("render progress");
+
   const [remainingTime, setRemainingTime] = useState(TIMER);
   // const timerId = useRef();
 
@@ -22,8 +24,8 @@ export default function ProgressTimer() {
 
       // Imposta un intervallo per aggiornare il progresso
       const interval = setInterval(() => {
-        setRemainingTime((prevTime) => prevTime - 10);
-      }, 10);
+        setRemainingTime((prevTime) => prevTime - 100);
+      }, 100);
 
       // Pulizia al smontaggio o al cambio della domanda
       return () => {
@@ -32,7 +34,7 @@ export default function ProgressTimer() {
         clearInterval(interval);
       };
     }
-  }, [currentQuestionCtx, handleQuestionChangeCtx]);
+  }, [handleQuestionChangeCtx]);
 
   return <progress max={TIMER} value={remainingTime} />;
 }

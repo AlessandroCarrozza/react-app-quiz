@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import { QUESTIONS_QUIZ } from "../questions";
 
 // context creation
 export const QuizContext = createContext({
@@ -18,9 +17,10 @@ export default function QuizContextProvider({
   setRecordResults,
   isActiveOption,
   setIsActiveOption,
+  shuffleAnswers,
 }) {
   const [currentQuestion, setCurrentQuestion] = useState(
-    QUESTIONS_QUIZ[recordResults.length]
+    shuffleAnswers[recordResults.length]
   );
 
   // function for the question change
@@ -38,7 +38,7 @@ export default function QuizContextProvider({
         ];
         setTimeout(() => {
           console.log("next question");
-          setCurrentQuestion(QUESTIONS_QUIZ[newResults.length]);
+          setCurrentQuestion(shuffleAnswers[newResults.length]);
           setIsActiveOption(true);
         }, 1000);
         return newResults;

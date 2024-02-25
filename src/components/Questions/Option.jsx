@@ -6,6 +6,8 @@ export default function Option({ answer }) {
   const { handleQuestionChangeCtx, isActiveOptionCtx, recordResultsCtx } =
     useContext(QuizContext);
 
+  console.log("render option");
+
   // console.log(recordResultsCtx);
   // console.log(recordResultsCtx[recordResultsCtx.length - 1]);
 

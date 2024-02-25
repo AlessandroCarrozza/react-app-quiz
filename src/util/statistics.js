@@ -21,15 +21,11 @@ export function getStat(amount, total) {
   return Math.floor(stat);
 }
 
-// export function getShuffleAnswers(array, currentQuestion) {
-//   do {
-//     function getRandomIndex() {
-//       return Math.floor(Math.random() * 4);
-//     }
-//     const index = getRandomIndex();
-//     if (!array.includes(currentQuestion.answers[index])) {
-//       array.push(currentQuestion.answers[index]);
-//     }
-//   } while (array.length !== currentQuestion.answers.length);
-//   return array;
-// }
+export function generateUniqueArray() {
+  const arr = [0, 1, 2, 3];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]]; // Scambia gli elementi
+  }
+  return arr;
+}

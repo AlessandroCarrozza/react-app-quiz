@@ -7,30 +7,32 @@ export default function ProgressTimer() {
     useContext(QuizContext);
 
   const [remainingTime, setRemainingTime] = useState(TIMER);
-  const timerId = useRef(); // useRef per tenere traccia del timeout
+  // const timerId = useRef();
 
   useEffect(() => {
     if (isActiveOptionCtx) {
+      console.log("effect start");
       // Resetta il timer ogni volta che la domanda cambia o quando il componente viene montato
       setRemainingTime(TIMER);
 
       // Imposta il timeout
-      timerId.current = setTimeout(() => {
+      const timer = setTimeout(() => {
         handleQuestionChangeCtx(currentQuestionCtx.userAnswer); // Cambia la domanda al termine del timer
       }, TIMER);
 
       // Imposta un intervallo per aggiornare il progresso
-      const intervalId = setInterval(() => {
-        setRemainingTime((prevTime) => Math.max(prevTime - 10, 0));
+      const interval = setInterval(() => {
+        setRemainingTime((prevTime) => prevTime - 10);
       }, 10);
 
       // Pulizia al smontaggio o al cambio della domanda
       return () => {
-        clearTimeout(timerId.current);
-        clearInterval(intervalId);
+        console.log("clean effect");
+        clearTimeout(timer);
+        clearInterval(interval);
       };
     }
-  }, [currentQuestionCtx, isActiveOptionCtx, handleQuestionChangeCtx]);
+  }, [currentQuestionCtx, handleQuestionChangeCtx]);
 
   return <progress max={TIMER} value={remainingTime} />;
 }
